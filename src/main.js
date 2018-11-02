@@ -5,11 +5,13 @@ import App from './App'
 import router from './router'
 import Mint from 'mint-ui'
 import 'mint-ui/lib/style.css'
-import YDUI from 'vue-ydui'; /* 相当于import YDUI from 'vue-ydui/ydui.rem.js' */
-import 'vue-ydui/dist/ydui.rem.css';
+import YDUI from 'vue-ydui' /* 相当于import YDUI from 'vue-ydui/ydui.rem.js' */
+import 'vue-ydui/dist/ydui.rem.css'
 /* 使用px：import 'vue-ydui/dist/ydui.px.css'; */
+import './assets/css/my-mint.scss'
+import './assets/css/my-ydui.scss'
 
-Vue.use(YDUI);
+Vue.use(YDUI)
 
 Vue.use(Mint)
 

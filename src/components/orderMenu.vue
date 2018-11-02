@@ -15,39 +15,44 @@
             </div>
         </div>
 
-        <!-- <yd-tab class="tab">
-            <yd-tab-panel label="选项一">土地是以它的肥沃和收获而被估价的；才能也是土地，不过它生产的不是粮食，而是真理。如果只能滋生瞑想和幻想的话，即使再大的才能也只是砂地或盐池，那上面连小草也长不出来的。</yd-tab-panel>
-            <yd-tab-panel label="选项二">我需要三件东西：爱情友谊和图书。然而这三者之间何其相通！炽热的爱情可以充实图书的内容，图书又是人们最忠实的朋友。</yd-tab-panel>
-            <yd-tab-panel label="选项三">时间是一切财富中最宝贵的财富。</yd-tab-panel>
-            <yd-tab-panel label="选项四">真理惟一可靠的标准就是永远自相符合。</yd-tab-panel>
-        </yd-tab> -->
+
+
+
         <mt-navbar v-model="selected">
-            <mt-tab-item id="1">选项一</mt-tab-item>
-            <mt-tab-item id="2">选项二</mt-tab-item>
-            <mt-tab-item id="3">选项三</mt-tab-item>
+            <mt-tab-item id="1">点餐</mt-tab-item>
+            <mt-tab-item id="2">订单</mt-tab-item>
+            <mt-tab-item id="3">服务</mt-tab-item>
         </mt-navbar>
-        <!-- tab-container -->
+        
         <mt-tab-container v-model="selected">
         <mt-tab-container-item id="1">
-            <mt-cell v-for="n in 10" :title="'内容 ' + n" />
+            <my-menu></my-menu>
         </mt-tab-container-item>
         <mt-tab-container-item id="2">
-            <mt-cell v-for="n in 4" :title="'测试 ' + n" />
+            
         </mt-tab-container-item>
         <mt-tab-container-item id="3">
-            <mt-cell v-for="n in 6" :title="'选项 ' + n" />
+            
         </mt-tab-container-item>
         </mt-tab-container>
         <!-- <mt-button @click.native="handleClick">按钮</mt-button> -->
+        <button-bar></button-bar>
     </div>
 </template>
 
 <script>
+import myMenu from './items/myMenu'
+import buttonBar from './items/buttonBar'
+
 export default {
     data() {
         return {
             selected: "1"
         }
+    },
+    components: {
+        myMenu,
+        buttonBar
     }
 }
 </script>
@@ -104,10 +109,13 @@ export default {
         width: 100%;
 
         border-bottom: 2px solid #eee;
+
+        background-color: #fff;
     }
 
     .seller-info {
         display: inline-block;
+        background-color: #fff;
         
         
         
@@ -128,7 +136,4 @@ export default {
         vertical-align: middle;
     }
 
-    .tab {
-        height: 
-    }
 </style>
