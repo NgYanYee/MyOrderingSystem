@@ -9,9 +9,9 @@
                 <p class="seller-name">中午吃啥泰国菜</p>
             </div>
             <div class="search-box">
-                <i class="icon-hall"></i>
+                <!-- <i class="icon-hall"></i> -->
                 <!-- <yd-search v-model="value1" :on-submit="submitHandler"></yd-search> -->
-                <input class="search" type="text" placeholder="搜索菜品">
+                <input class="search" type="text" placeholder="搜索菜品" >
             </div>
         </div>
 
@@ -70,22 +70,32 @@ export default {
 
     .search-box {
         display: inline-block;
+        text-align: right;
+
+        /* background: url(../assets/images/search.png) no-repeat; */
     }
 
     .search {
         /* border: 0; */
         display: inline-block;
-        border: 2px solid #eee;
+        border: 1px solid #c4c4c4;
 
         border-radius: 4px;
-        width: 35%;
-        height: 25px;
-        line-height: 25px;
+        padding-left: 1.25rem;
+
+        width: 45%;
+        height: 1.5rem;
+        line-height: 1.5rem;
+
+        background: url(../assets/images/search.png) no-repeat;
+        background-size: 1rem 1rem;
+        background-position: 1px 50%;
 
         outline: none;
 
 
     }
+
 
     .icon-user {
         display: inline-block;
