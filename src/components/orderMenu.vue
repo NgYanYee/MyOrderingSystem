@@ -1,5 +1,6 @@
 <template>
     <div>
+        <div class="header">
         <div class="bulletin">
             欢迎光临泰国菜-线上餐厅，本店wifi密码为：whatforlunch208
         </div>
@@ -23,7 +24,7 @@
             <mt-tab-item id="2">订单</mt-tab-item>
             <mt-tab-item id="3">服务</mt-tab-item>
         </mt-navbar>
-        
+        </div>
         <mt-tab-container v-model="selected">
         <mt-tab-container-item id="1">
             <my-menu></my-menu>
@@ -58,6 +59,12 @@ export default {
 </script>
 
 <style>
+    /* .header {
+        position: fixed;
+        top: 0;
+    } */
+
+
     .bulletin {
         width: 100%;
         height: 36px;
@@ -145,5 +152,7 @@ export default {
 
         vertical-align: middle;
     }
+
+    
 
 </style>

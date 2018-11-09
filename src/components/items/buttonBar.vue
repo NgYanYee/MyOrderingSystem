@@ -1,7 +1,9 @@
 <template>
     <div class="button-bar">
         <div class="shop-cart">
-            <img src="../../assets/images/orange-cart.png">
+            <img :src="cartImg">
+            <span class="count-icon">{{ count }}</span>
+            <p class="price">￥{{ sum }}</p>
         </div>
         <div :class="[isEmpty ? 'empty' : 'noEmpty', 'to-pay']">
             去支付
@@ -14,7 +16,10 @@ export default {
     data() {
         return {
             isEmpty: false,
-            cartImg: '../assets/images/orange-cart.png'
+            // cartImg: require('@/assets/images/orange-cart.png'),
+            cartImg: require('@/assets/images/car.png'),
+            count: 0,
+            sum: 0
         }
     }
 }
@@ -56,18 +61,49 @@ export default {
         color: #fff;
     }
 
-    img {
-        width: 2.25rem;
-        height: 2.25rem;
+    .shop-cart img {
+        position: relative;
+        /* top: -0.25rem; */
+        
+        width: 2.5rem;
+        height: 2.5rem;
+
+        vertical-align: top;
+
+        margin-top:0.25rem;
     }
 
     .shop-cart {
         position: absolute;
-        left: 3rem;
+        left: 2rem;
 
         display: inline-block;
-        width: 5rem;
+        /* width: 6rem; */
         height: 100%;
+    }
+
+    .count-icon {
+        position: absolute;
+        top: 0;
+        left: 2rem;
+
+        display: inline-block;
+        width: 1rem;
+        height: 1rem;
+        border-radius: 50%;
+        
+        background-color: red;
+        color: white;
+        
+    }
+
+    .price {
+        display: inline-block;
+
+        margin-left: 1rem;
+
+        color: #e6951d;
+        font-size: 30px;
     }
 </style>
 

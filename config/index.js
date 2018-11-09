@@ -13,7 +13,7 @@ module.exports = {
     proxyTable: {},
 
     // Various Dev Server settings
-    host: '192.168.1.116',
+    host: '192.168.1.117',
     // host: 'localhost', // can be overwritten by process.env.HOST
     port: 8080, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined
     autoOpenBrowser: false,
@@ -41,7 +41,16 @@ module.exports = {
     // https://vue-loader.vuejs.org/en/options.html#cachebusting
     cacheBusting: true,
 
-    cssSourceMap: true
+    cssSourceMap: true,
+
+    proxyTable: {
+        '/api': {
+          target: 'http://result.eolinker.com/xI7UEir31bb0ba7787da922392d7802652dc937dfbff047?uri=/seller', // 你要代理的域名和端口号，要加上http
+          changeOrigin: true,
+          pathRewrite: {
+            '^/api': '/api' // 这里用‘/api’代替target里面的地址，组件中调用接口时直接用api代替 比如我要调用'http://xxx.com:8080/api/NEWS/getNews.json?page=1&pageSize=10'，直接写‘/api/NEWS/getNews.json?page=1&pageSize=10’即可
+          }
+        }
   },
 
   build: {
