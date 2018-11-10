@@ -2,8 +2,8 @@
     <div class="menu-item">
        <img :src="dishImg">
        <div class="text">
-           <p class="dish-name">泰皇咖喱鸡</p>
-            <p class="dish-price">￥38/盘</p>
+           <p class="dish-name">{{name}}</p>
+            <p class="dish-price">￥{{price}}/盘</p>
             <p class="dish-sale">月销量 3</p>
 
             <span class="sub">－</span>
@@ -21,7 +21,8 @@ export default {
             dishImg: require('@/assets/images/timg.jpeg'),
             dishCount: 1
         }
-    }
+    },
+    props: ['name', 'price', 'description', 'icon']
 }
 </script>
 

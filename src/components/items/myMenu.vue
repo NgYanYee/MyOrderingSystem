@@ -1,18 +1,22 @@
 <template>
     <div class="my-menu">
         <div class="layout-left">
-            <ul class="dish-type">
+            <ul class="dish-type" v-model="typeSelected">
+                <li  v-for="(item, index) in productList"><a :href="'#'+ item.type">{{item.name}}</a></li>
                 <li class="is-selected"><a href="#1">推荐</a></li>
-                <li><a href="#2">泰国菜</a></li>
-                <li><a href="#3">凉拌菜</a></li>
-                <li><a href="#4">茶位</a></li>
-                <li><a href="#5">碟头饭</a></li>
 
             </ul>
         </div>
         <div class="layout-right">
-            <p class="dish-type-name">推荐</p>
-            <menuItem v-for="i in 10"></menuItem>  
+            <div v-for="(item, index) in productList">
+                <p class="dish-type-name">{{item.name}}</p>
+                <menuItem v-for="i in item.foods" 
+                :key = "i.id"
+                :name = "i.name"
+                :price = "i.price"
+                :description = "i.description"
+                :icon = "i.icon"></menuItem>  
+            </div>
             <div style="clear: both;"></div>
         </div>
     </div>
@@ -24,13 +28,22 @@ import menuItem from './menuItem'
 export default {
     data() {
         return {
-
+            typeIndex: 1,
+            typeSelected: 1
         }
     },
+    props: ['productList'],
     components: {
         menuItem
     },
+    computed: {
+        
+    },
+    methods: {
+        
+    },
     created() {
+        
     }
 }
 </script>

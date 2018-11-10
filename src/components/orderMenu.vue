@@ -2,12 +2,12 @@
     <div>
         <div class="header">
         <div class="bulletin">
-            欢迎光临泰国菜-线上餐厅，本店wifi密码为：whatforlunch208
+            {{notice}}
         </div>
         <div class="head">
             <div class="seller-info">
-                <img src="../assets/touxiang.jpg" alt="111">
-                <p class="seller-name">中午吃啥泰国菜</p>
+                <img :src="storeImage" alt="111">
+                <p class="seller-name">{{storeName}}</p>
             </div>
             <div class="search-box">
                 <!-- <i class="icon-hall"></i> -->
@@ -27,7 +27,9 @@
         </div>
         <mt-tab-container v-model="selected">
         <mt-tab-container-item id="1">
-            <my-menu></my-menu>
+            <my-menu 
+
+            :productList="productList"></my-menu>
         </mt-tab-container-item>
         <mt-tab-container-item id="2">
             
@@ -44,17 +46,52 @@
 <script>
 import myMenu from './items/myMenu'
 import buttonBar from './items/buttonBar'
+import menu from '../store/types/menu'
+import { mapState, mapActions } from 'vuex'
 
 export default {
     data() {
         return {
-            selected: "1"
+            selected: "1",
+            typeIndex: 0
         }
     },
     components: {
         myMenu,
         buttonBar
+    },
+    computed: {
+        ...mapState({
+            'storeName': state => {
+                return state.menu.storeName
+            },
+            'storeImage': state => {
+                return state.menu.storeImage
+            },
+            'notice': state => {
+                return state.menu.notice
+            },
+            'productList': state => {
+                return state.menu.productList
+            },
+        })
+    },
+    methods: {
+        ...mapActions(menu.actions)
+    },
+    created() {
+        this.getSellerInfo({
+            sellerId: 0
+        }).then((data) => {
+				
+			}).catch((err) => {
+				this.$Message.error(err)
+            })
+        this.getMenuInfo({
+            sellerId: 0
+        })
     }
+    
 }
 </script>
 

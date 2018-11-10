@@ -10,6 +10,7 @@ import 'vue-ydui/dist/ydui.rem.css'
 /* 使用px：import 'vue-ydui/dist/ydui.px.css'; */
 import './assets/css/my-mint.scss'
 import './assets/css/my-ydui.scss'
+import store from './store/'
 
 Vue.use(YDUI)
 
@@ -21,6 +22,7 @@ Vue.config.productionTip = false
 new Vue({
   el: '#app',
   router,
+  store,
   components: { App },
   template: '<App/>'
 })
