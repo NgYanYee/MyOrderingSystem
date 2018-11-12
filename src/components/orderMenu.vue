@@ -1,29 +1,29 @@
 <template>
     <div>
         <div class="header">
-        <div class="bulletin">
-            {{notice}}
-        </div>
-        <div class="head">
-            <div class="seller-info">
-                <img :src="storeImage" alt="111">
-                <p class="seller-name">{{storeName}}</p>
+            <div class="bulletin">
+                {{notice}}
             </div>
-            <div class="search-box">
-                <!-- <i class="icon-hall"></i> -->
-                <!-- <yd-search v-model="value1" :on-submit="submitHandler"></yd-search> -->
-                <input class="search" type="text" placeholder="搜索菜品" >
+            <div class="head">
+                <div class="seller-info">
+                    <img :src="storeImage" alt="111">
+                    <p class="seller-name">{{storeName}}</p>
+                </div>
+                <div class="search-box">
+                    <!-- <i class="icon-hall"></i> -->
+                    <!-- <yd-search v-model="value1" :on-submit="submitHandler"></yd-search> -->
+                    <input class="search" type="text" placeholder="搜索菜品" >
+                </div>
             </div>
-        </div>
 
 
 
 
-        <mt-navbar v-model="selected">
-            <mt-tab-item id="1">点餐</mt-tab-item>
-            <mt-tab-item id="2">订单</mt-tab-item>
-            <mt-tab-item id="3">服务</mt-tab-item>
-        </mt-navbar>
+            <mt-navbar v-model="selected">
+                <mt-tab-item id="1">点餐</mt-tab-item>
+                <mt-tab-item id="2">订单</mt-tab-item>
+                <mt-tab-item id="3">服务</mt-tab-item>
+            </mt-navbar>
         </div>
         <mt-tab-container v-model="selected">
         <mt-tab-container-item id="1">
@@ -32,20 +32,22 @@
             :productList="productList"></my-menu>
         </mt-tab-container-item>
         <mt-tab-container-item id="2">
-            
+            <my-order
+            :orderList="orderList"></my-order>
         </mt-tab-container-item>
         <mt-tab-container-item id="3">
             
         </mt-tab-container-item>
         </mt-tab-container>
         <!-- <mt-button @click.native="handleClick">按钮</mt-button> -->
-        <button-bar></button-bar>
+        
     </div>
 </template>
 
 <script>
 import myMenu from './items/myMenu'
-import buttonBar from './items/buttonBar'
+import myOrder from './items/myOrder'
+
 import menu from '../store/types/menu'
 import { mapState, mapActions } from 'vuex'
 
@@ -58,7 +60,8 @@ export default {
     },
     components: {
         myMenu,
-        buttonBar
+        myOrder
+   
     },
     computed: {
         ...mapState({
@@ -73,6 +76,9 @@ export default {
             },
             'productList': state => {
                 return state.menu.productList
+            },
+            'orderList': state => {
+                return state.menu.orderList
             },
         })
     },
@@ -90,16 +96,22 @@ export default {
         this.getMenuInfo({
             sellerId: 0
         })
+        this.getOrderInfo()
+
     }
     
 }
 </script>
 
 <style>
-    /* .header {
+    .header {
         position: fixed;
         top: 0;
-    } */
+
+        width: 100%;
+
+        z-index: 500;
+    }
 
 
     .bulletin {

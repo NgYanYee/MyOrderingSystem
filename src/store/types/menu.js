@@ -3,9 +3,15 @@ import namespace from '@/utils/namespace.js'
 export default namespace('menu', {
   actions: [
     'getSellerInfo',
-    'getMenuInfo'
+    'getMenuInfo',
+    'setMenuInfo',
+    'addToCart',
+    'getOrderInfo',
+    'createOrder'
   ],
   mutations: [
-    'setInfo'
+    'setInfo',
+    'clearCart',
+    'addCart'
   ]
 })
