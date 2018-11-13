@@ -26,15 +26,15 @@
             </mt-navbar>
         </div>
         <mt-tab-container v-model="selected">
-        <mt-tab-container-item id="1">
-            <my-menu 
+            <mt-tab-container-item id="1">
+                <my-menu 
 
-            :productList="productList"></my-menu>
-        </mt-tab-container-item>
-        <mt-tab-container-item id="2">
-            <my-order
-            :orderList="orderList"></my-order>
-        </mt-tab-container-item>
+                :productList="productList"></my-menu>
+            </mt-tab-container-item>
+            <mt-tab-container-item id="2">
+                <my-order
+                :orderList="orderList"></my-order>
+            </mt-tab-container-item>
         <mt-tab-container-item id="3">
             
         </mt-tab-container-item>
@@ -80,7 +80,20 @@ export default {
             'orderList': state => {
                 return state.menu.orderList
             },
+            'pageIndex': state => {
+                return state.menu.pageIndex
+            }
         })
+    },
+    watch: {
+        pageIndex: function(newval, oldval) {
+            this.selected = newval
+        },
+        selected: function(newval, oldval) {
+            this.setMenuInfo({
+                pageIndex: this.selected
+            })
+        }
     },
     methods: {
         ...mapActions(menu.actions)
@@ -171,7 +184,7 @@ export default {
    
 
     .head {
-        padding: 2.5% 3%;
+        padding: 2.5%;
         width: 100%;
 
         border-bottom: 2px solid #eee;

@@ -32,6 +32,11 @@ export default {
     },
     props: ['name', 'price', 'description', 'icon', 'id'],
      computed: {
+         ...mapState({
+             'clear': state => {
+                 return state.menu.clear
+             }
+         }),
         
         ...mapGetters({
                 cartData:'addShopList',
@@ -55,48 +60,25 @@ export default {
                 dishCount: this.dishCount,
                 dishPrice: this.price
             }
-            // console.log(data)
-            // this.$emit('dish',data)
 
             this.addToCart(data)
-            // this.searchCount()
         },
-        // searchCount: function() {
-        //     var id = this.id
-        //     var record = this.cartData.find(function(elem) {
-        //         return elem.dishId == id
-        //     })
-        //     console.log(record)
-        //     if(!record) {
-        //         this.dishCount = 0
-        //     } else {
-        //         this.dishCount = record.dishCount
-        //     }
-        // }
+       
     },
     created() {
-        // this.count = this.dishCount
+        
     },
     watch: {
-        // cartData: function(oldval, newval) {
-        //     console.log("111")
-        //     var id = this.id
-        //     var record = newval.find(function(elem) {
-        //         return elem.dishId == id
-        //     })
-        //     console.log(record)
-        //     if(!record) {
-        //         this.dishCount = 0
-        //     } else {
-        //         this.dishCount = record.dishCount
-        //     }
-        // }
+
         curObject: function(newval, oldval) {
             var id = this.id
             if(newval.dishId == id) {
-                console.log(newval.dishId + '+' + newval.dishCount)
+                // console.log(newval.dishId + '+' + newval.dishCount)
                 this.dishCount = newval.dishCount
             }
+        },
+        clear: function(newval, oldval) {
+            if(newval == 1) this.dishCount = 0
         }
     }
 }

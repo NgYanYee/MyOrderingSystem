@@ -9,7 +9,7 @@ import YDUI from 'vue-ydui' /* 相当于import YDUI from 'vue-ydui/ydui.rem.js' 
 import 'vue-ydui/dist/ydui.rem.css'
 /* 使用px：import 'vue-ydui/dist/ydui.px.css'; */
 import './assets/css/my-mint.scss'
-import './assets/css/my-ydui.scss'
+
 import store from './store/'
 
 Vue.use(YDUI)

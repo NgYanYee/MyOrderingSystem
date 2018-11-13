@@ -1,30 +1,24 @@
 <template>
   <div id="app">
-    <!-- <img src="./assets/logo.png">
-    <router-view/> -->
-    <!-- <mt-button @click.native="handleClick">按钮</mt-button> -->
-  <order-menu></order-menu>
-  <!-- <router-view></router-view> -->
+
+    <order-menu></order-menu>
+
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld'
 import orderMenu from './components/orderMenu'
 
 export default {
   name: 'App',
   components: {
-	  HelloWorld,
 	  orderMenu
   }
 }
 </script>
 
 <style>
-html {
-  /* font-size: 30px; */
-}
+
 
 body {
   margin: 0;

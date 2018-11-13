@@ -17,7 +17,9 @@ const state = {
   openId: 'asdasdas2',
   sellerId: 12312444412,
   spec: '正常份量',
-  details: {}
+  details: {},
+  pageIndex: '1',
+  clear: 1
 }
 
 const getters = {
@@ -123,7 +125,7 @@ const actions = {
         url: '/sell/buyer/order/create',
         data: data
       }).then(function (res) {
-        if (res.data.code === 200) {
+        if (res.data.code === 0) {
           context.commit(types.mutations.setInfo, {
             orderId: res.data.data
           })
@@ -229,6 +231,7 @@ const mutations = {
 
   [types.mutations.clearCart]: (state) => {
     state.add = []
+    state.clear = 1
   },
 
   [types.mutations.addOrder]: (state, data) => {
@@ -245,6 +248,7 @@ const mutations = {
       record.dishCount = data.dishCount
     }
     state.curChange = data
+    state.clear = 0
     // console.log(state.curChange.dishCount)
   }
 

@@ -3,7 +3,7 @@
     <div class="my-menu">
         <div class="layout-left">
             <ul class="dish-type" v-model="typeSelected">
-                <li  v-for="(item, index) in productList" :class="{'is-selected': curType == index}" @click="switchType(index, item.name)">{{item.name}}</li>
+                <li  v-for="(item, index) in productList" :class="{'is-selected': curType === index}" @click="switchType(index, item.name)">{{item.name}}</li>
                 <!-- <li class="is-selected"><a href="#1">推荐</a></li> -->
 
             </ul>
@@ -25,9 +25,9 @@
         <div class="preference">
 
         </div>
-        <div class="shadow" v-if="toggle"></div>
+        
     </div>
-    <button-bar :toggle = "toggle" :dishesList = "dishesList" @click=""></button-bar>
+    <button-bar :dishesList = "dishesList"></button-bar>
     </div>
 </template>
 
@@ -57,16 +57,15 @@ export default {
         buttonBar
     },
     computed: {
-        
     },
     methods: {
         ...mapActions(menu.actions),
         switchType(index, typeId) {
+
             this.curType = index
-            
+            // console.log(index)
             var top = document.getElementById(typeId).offsetTop - 140
             var height = document.getElementById(typeId).offerHeight
-            // console.log(top)
             // document.body.scrollTop = top
             document.documentElement.scrollTop = top
             this.curTop = top
@@ -90,6 +89,7 @@ export default {
                 this.curType -= 1
                 // console.log(this.curType)
                 // var curDivHeight = document.getElementById(this.productList[this.curType].name).offsetHeight
+                console.log(top + '+' +curTypeTop)
                 this.preHeight = document.getElementById(this.productList[this.curType - 1].name).offsetHeight
                 this.nextHeight = this.curDivHeight
                 this.curDivHeight = this.preHeight
@@ -103,10 +103,8 @@ export default {
             // this.setMenuInfo({
             //     dishesList: this.dishesList
             // })
-    },
-    Toggle() {
-        this.toggle = !toggle
-    }
+        },
+        
     },
     created() {
         
@@ -184,16 +182,6 @@ export default {
 
     }
 
-    .shadow {
-
-        position: fixed;
-        top: 0;
-        width: 100%;
-        height: 100%;
-
-        background-color: rgba(0, 0, 0, .1);
-        z-index: 501;
-    }
 </style>
 
 

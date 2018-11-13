@@ -1,6 +1,7 @@
 <template>
     <div class="car">
-        <div class="car-menu">
+        <div class="shadow" v-show="toggle"></div>
+        <div class="car-menu" v-show="toggle">
             <div class="other-func">
                 <p >已点菜品</p>
                 <p class="clear-car" @click.native="clearCart">清空</p>
@@ -17,7 +18,7 @@
         </div>
         
         <div class="button-bar">
-        <div class="shop-cart">
+        <div class="shop-cart" @click="switchToggle">
             <img :src="(totalNum == 0) ? emptyCartImg : cartImg">
             <span class="count-icon" v-show="totalNum">{{ totalNum }}</span>
             <p class="price" :class="{'car_empty': totalNum == 0}">￥{{ totalPrice }}</p>
@@ -46,10 +47,11 @@ export default {
             emptyCartImg: require('@/assets/images/car_gery.png'),
             cartImg: require('@/assets/images/car_orange.png'),
             count: 0,
+            toggle: false
             // sum: 0
         }
     },
-    props: ['toggle'],
+    // props: ['toggle'],
     components: {
         carItem
     },
@@ -68,12 +70,20 @@ export default {
             this.addToCart(data)
         },
         submitOrder: function() {
-            
+            if(this.totalNum == 0) return
             this.createOrder().then(function(){
                 alert('下单成功')
             }).catch(function() {
                 alert('下单失败')
             })
+           
+            this.setMenuInfo({
+                pageIndex: "2"
+            })
+            this.toggle = false
+        },
+        switchToggle() {
+            this.toggle = !this.toggle
         }
     },
     created () {
@@ -83,8 +93,20 @@ export default {
 </script>
 
 <style>
-    .car {
+    .button-car,
+    .car-menu {
         z-index: 1001;
+    }
+
+    .shadow {
+
+        position: fixed;
+        top: 0;
+        width: 100%;
+        height: 100%;
+
+        background-color: rgba(0, 0, 0, .1);
+        z-index: 501;
     }
 
 

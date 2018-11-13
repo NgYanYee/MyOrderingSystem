@@ -7,7 +7,8 @@ export default namespace('menu', {
     'setMenuInfo',
     'addToCart',
     'getOrderInfo',
-    'createOrder'
+    'createOrder',
+    'getOrderDetail'
   ],
   mutations: [
     'setInfo',
